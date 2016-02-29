@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "Acer 笔记本启动后默认没有开启WIFI"
+date:   2014-11-29 00:00:00 +0800
+categories: linux
+---
+自从装了Ubuntu后，发现每次重启后wifi指示灯不亮，需要fn+F3手动打开wifi。网上找了原因后，发现是acer-wmi模块引起的。
+解决方法：
+sudo vim /etc/modprobe.d/blacklist.conf 在最后一行增加 blacklist acer-wmi。问题果然解决了。
