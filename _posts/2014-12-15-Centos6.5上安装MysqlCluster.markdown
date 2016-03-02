@@ -1,0 +1,142 @@
+---
+layout: post
+title:  "Centos6.5上安装MysqlCluster"
+date:   2014-12-15 08:37:00 +0800
+categories: linux
+---
+
+参考：<a href="http://dev.mysql.com/doc/refman/5.1/en/mysql-cluster-install-linux-binary.html">http://dev.mysql.com/doc/refman/5.1/en/mysql-cluster-install-linux-binary.html</a>
+
+实验
+虚拟机4台
+192.168.1.103        centosvm003         MySQL服务器(SQL)节点
+192.168.1.104        centosvm004        数据(NDBD)节点"A"
+192.168.1.105        centosvm005        数据(NDBD)节点"B"
+192.168.1.106        centosvm006        管理(MGM)节点
+
+MySQL服务器(SQL)节点
+1、添加用户组及用户
+shell&gt; groupadd mysql
+shell&gt; useradd -g mysql mysql
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/001-增加用户组及用户.png"><img class="alignnone size-full wp-image-40" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/001-增加用户组及用户.png" alt="001-增加用户组及用户" width="856" height="53" /></a>
+
+2、上传文件mysql-cluster-gpl-7.3.6-linux-glibc2.5-x86_64.tar.gz至/var/tmp目录
+3、进行解压并创建链接
+shell&gt; cd /var/tmp
+shell&gt; tar -C /usr/local -xzvf mysql-cluster-gpl-7.3.6-linux-glibc2.5-x86_64.tar.gz
+shell&gt; ln -s /usr/local/mysql-cluster-gpl-7.3.6-linux-glibc2.5-x86_64 /usr/local/mysql
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/002-解压操作.png"><img class="alignnone size-full wp-image-39" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/002-解压操作.png" alt="002-解压操作" width="979" height="258" /></a>
+4、安装
+shell&gt; cd /usr/local/mysql
+shell&gt; scripts/mysql_install_db --user=mysql
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/003-安装.png"><img class="alignnone size-full wp-image-38" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/003-安装.png" alt="003-安装" width="1087" height="361" /></a>
+
+5、设置权限
+shell&gt; chown -R root .
+shell&gt; chown -R mysql data
+shell&gt; chgrp -R mysql .
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/004-设置权限.png"><img class="alignnone size-full wp-image-37" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/004-设置权限.png" alt="004-设置权限" width="723" height="152" /></a>
+
+6、加入启动设置
+shell&gt; cp support-files/mysql.server /etc/rc.d/init.d/
+shell&gt; chmod +x /etc/rc.d/init.d/mysql.server
+shell&gt; chkconfig --add mysql.server
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/005-加入启动设置.png"><img class="alignnone size-full wp-image-36" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/005-加入启动设置.png" alt="005-加入启动设置" width="735" height="106" /></a>
+
+数据(NDBD)节点
+1、添加用户组及用户
+shell&gt; groupadd mysql
+shell&gt; useradd -g mysql mysql
+2、上传文件mysql-cluster-gpl-7.3.6-linux-glibc2.5-x86_64.tar.gz至/var/tmp目录
+3、解压并把命令放到/usr/local/bin/中，并执行可运行
+shell&gt; cd /var/tmp
+shell&gt; tar -zxvf mysql-cluster-gpl-7.3.6-linux-glibc2.5-x86_64.tar.gz
+shell&gt; cd mysql-cluster-gpl-7.3.6-linux-glibc2.5-x86_64
+shell&gt; cp bin/ndbd /usr/local/bin/ndbd
+shell&gt; cp bin/ndbmtd /usr/local/bin/ndbmtd
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/006-datanode解压并命令复制到目录.png"><img class="alignnone size-full wp-image-35" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/006-datanode解压并命令复制到目录.png" alt="006-datanode解压并命令复制到目录" width="892" height="467" /></a>
+
+管理(MGM)节点
+1、添加用户组及用户
+shell&gt; groupadd mysql
+shell&gt; useradd -g mysql mysql
+2、上传文件mysql-cluster-gpl-7.3.6-linux-glibc2.5-x86_64.tar.gz至/var/tmp目录
+3、解压并把命令放到/usr/local/bin/中，并执行可运行
+shell&gt; cd /var/tmp
+shell&gt; tar -zxvf mysql-cluster-gpl-7.3.6-linux-glibc2.5-x86_64.tar.gz
+shell&gt; cd mysql-cluster-gpl-7.3.6-linux-glibc2.5-x86_64
+shell&gt; cp bin/ndb_mgm* /usr/local/bin
+shell&gt; cd /usr/local/bin
+shell&gt; chmod +x ndb_mgm*
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/007-manager解压并命令复制到目录.png"><img class="alignnone size-full wp-image-34" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/007-manager解压并命令复制到目录.png" alt="007-manager解压并命令复制到目录" width="860" height="91" /></a>
+
+配置：
+MySQL服务器(SQL)节点
+shell&gt; vi /etc/my.cnf
+
+[mysqld]
+# Options for mysqld process:
+ndbcluster                      # run NDB storage engine
+
+[mysql_cluster]
+# Options for MySQL Cluster processes:
+ndb-connectstring=centosvm006  # location of management server
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/008-数据节点与sql节点mycnf配置.png"><img class="alignnone size-full wp-image-33" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/008-数据节点与sql节点mycnf配置.png" alt="008-数据节点与sql节点mycnf配置" width="581" height="272" /></a>
+
+数据(NDBD)节点
+shell&gt; vi /etc/my.cnf
+
+[mysqld]
+# Options for mysqld process:
+ndbcluster                      # run NDB storage engine
+
+[mysql_cluster]
+# Options for MySQL Cluster processes:
+ndb-connectstring=centosvm006  # location of management server
+
+配置及启动后台守护进程
+管理(MGM)节点
+shell&gt; mkdir /var/lib/mysql-cluster
+shell&gt; cd /var/lib/mysql-cluster
+shell&gt; vi config.ini
+
+启动，必须创建/usr/local/mysql/mysql-cluster目录，不知道为什么，官方文档没有说明需要创建，但是测试的时候报错
+ndb_mgmd -f /var/lib/mysql-cluster/config.ini
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/009-启动mgmd.png"><img class="alignnone size-full wp-image-32" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/009-启动mgmd.png" alt="009-启动mgmd" width="1365" height="291" /></a>
+
+注意：关闭所有相关节点的防火墙,service iptables stop，否则会出现异常
+
+数据(NDBD)节点
+shell&gt; ndbd，
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/010-ndbd启动1.png"><img class="alignnone size-full wp-image-31" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/010-ndbd启动1.png" alt="010-ndbd启动1" width="769" height="66" /></a>
+
+报错，关闭iptables
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/010-关闭iptables.png"><img class="alignnone size-full wp-image-30" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/010-关闭iptables.png" alt="010-关闭iptables" width="666" height="85" /></a>
+
+再次执行ndbd命令
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/011-ndbd启动报错2.png"><img class="alignnone size-full wp-image-29" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/011-ndbd启动报错2.png" alt="011-ndbd启动报错2" width="1301" height="91" /></a>
+
+报错，创建目录
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/011-ndbd启动报错2.png"><img class="alignnone size-full wp-image-29" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/011-ndbd启动报错2.png" alt="011-ndbd启动报错2" width="1301" height="91" /></a>
+
+MySQL服务器(SQL)节点
+shell&gt; service mysql.server start
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/012-启动sql节点服务.png"><img class="alignnone size-full wp-image-27" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/012-启动sql节点服务.png" alt="012-启动sql节点服务" width="1291" height="104" /></a>
+
+ndb_mgm使用show命令查看状态
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/013-没有连接到sqlnode.png"><img class="alignnone size-full wp-image-26" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/013-没有连接到sqlnode.png" alt="013-没有连接到sqlnode" width="923" height="238" /></a>
+
+如果提示没有显示对应的sql节点，则需要在config.ini加一个空的mysqld节点即可，并关闭集群和重启上述三个节点即可。
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/014-状态正常.png"><img class="alignnone size-full wp-image-25" src="http://www.sunjiesh.com.cn/wp-content/uploads/2014/12/014-状态正常.png" alt="014-状态正常" width="818" height="326" /></a>
+
+&nbsp;
