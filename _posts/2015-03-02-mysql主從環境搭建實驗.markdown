@@ -1,0 +1,55 @@
+---
+layout: post
+title:  "mysql主從環境搭建實驗"
+date:   2015-03-02 09:24:00 +0800
+categories: linux
+---
+
+參考：<a href="http://blog.163.com/zhaoxin_hope/blog/static/17243722120126114039748/">http://blog.163.com/zhaoxin_hope/blog/static/17243722120126114039748/</a>
+
+Master:10.1.101.116
+Slave:10.1.101.127
+
+主機
+1、修改my.cnf文件，mysqld下主要增加log-bin、server-id參數
+log-bin=mysql-bin #启动二进制文件
+server-id=1 #服务器ID
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/001-master上mysql配置文件配置.png"><img class="alignnone size-full wp-image-74" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/001-master上mysql配置文件配置.png" alt="001-master上mysql配置文件配置" width="1366" height="743" /></a>
+
+2、登錄主機，创建backup用户，并授权给10.1.101.127（從機）使用。
+grant replication slave on *.* to 'backup'@'10.1.101.127' identified by 'backup';
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/002-master賦權限.png"><img class="alignnone size-full wp-image-73" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/002-master賦權限.png" alt="002-master賦權限" width="945" height="251" /></a>
+3、查询主数据库状态，并记下FILE及Position的值，这个在后面配置从服务器的时候要用到。
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/003-master狀態.png"><img class="alignnone size-full wp-image-71" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/003-master狀態.png" alt="003-master狀態" width="1099" height="142" /></a>
+
+備機
+1、修改my.cnf文件，mysqld下主要增加log-bin、server-id參數
+log-bin=mysql-bin #启动二进制文件
+server-id=10 #服务器ID
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/004-slave上mysql配置文件配置.png"><img class="alignnone size-full wp-image-72" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/004-slave上mysql配置文件配置.png" alt="004-slave上mysql配置文件配置" width="1366" height="743" /></a>
+2、登錄從機，執行下列命令
+change master to master_host='10.1.101.116',master_user='backup',master_password='backup',master_log_file='mysql-bin.000001',master_log_pos=420;
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/005-slave執行change命令.png"><img class="alignnone size-full wp-image-70" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/005-slave執行change命令.png" alt="005-slave執行change命令" width="1346" height="275" /></a>
+3、執行slave
+start slave;
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/006-slave啓動slave.png"><img class="alignnone size-full wp-image-69" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/006-slave啓動slave.png" alt="006-slave啓動slave" width="783" height="73" /></a>
+4、執行show slave status\G，提示錯誤，Last_IO_Error: error connecting to master 'backup@10.1.101.116:3306' - retry-time: 60  retries: 86400，master上的防火牆禁用了3306端口，爲了簡單起見，直接關閉防火牆
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/007-查看slave狀態，出現錯誤.png"><img class="alignnone size-full wp-image-68" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/007-查看slave狀態，出現錯誤.png" alt="007-查看slave狀態，出現錯誤" width="1366" height="768" /></a>
+5、重新啓動slave，查看slave狀態
+stop slave;
+start slave;
+show slave status\G，查看狀態Slave_IO_Running和Slave_SQL_Running都爲YES表示成功，表明成功
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/008-重新啓動slave並查看slave狀態成功.png"><img class="alignnone size-full wp-image-67" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/008-重新啓動slave並查看slave狀態成功.png" alt="008-重新啓動slave並查看slave狀態成功" width="1366" height="768" /></a>
+
+主機進行創建數據庫操作，並在從機上面查看
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/009-master測試.png"><img class="alignnone size-full wp-image-66" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/009-master測試.png" alt="009-master測試" width="705" height="191" /></a>
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/010-slave上檢查狀態.png"><img class="alignnone size-full wp-image-65" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/010-slave上檢查狀態.png" alt="010-slave上檢查狀態" width="1009" height="513" /></a>
