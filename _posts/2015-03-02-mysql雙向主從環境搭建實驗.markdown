@@ -1,0 +1,32 @@
+---
+layout: post
+title:  "2015-03-02-mysql雙向主從環境搭建實驗"
+date:   2015-03-02 10:02:00 +0800
+categories: linux
+---
+Master:10.1.101.116
+Slave:10.1.101.127
+
+基於<a href="http://www.sunjiesh.com.cn/?p=64">上一篇文章</a>中講到的進行實現
+slave機配置
+1、登錄從機，创建backup用户，并授权给10.1.101.116（主機）使用。
+grant replication slave on *.* to 'backup'@'10.1.101.116' identified by 'backup';
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/011-slave上grant權限.png"><img class="alignnone size-full wp-image-79" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/011-slave上grant權限.png" alt="011-slave上grant權限" width="944" height="75" /></a>
+2、查询主数据库状态，并记下FILE及Position的值，这个在后面配置从服务器的时候要用到。
+show master status;
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/012-slave上查master狀態命令.png"><img class="alignnone size-full wp-image-80" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/012-slave上查master狀態命令.png" alt="012-slave上查master狀態命令" width="1181" height="141" /></a>
+
+master機
+1、登錄從機，執行下列命令
+change master to master_host='10.1.101.127',master_user='backup',master_password='backup',master_log_file='mysql-bin.000001',master_log_pos=477;
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/013-master上執行change命令.png"><img class="alignnone size-full wp-image-81" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/013-master上執行change命令.png" alt="013-master上執行change命令" width="1149" height="67" /></a>
+2、執行slave
+start slave;
+3、執行show slave status\G，查看slave狀態。
+show slave status\G，查看狀態Slave_IO_Running和Slave_SQL_Running都爲YES表示成功，表明成功
+
+<a href="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/014-master查看狀態.png"><img class="alignnone size-full wp-image-82" src="http://www.sunjiesh.com.cn/wp-content/uploads/2015/03/014-master查看狀態.png" alt="014-master查看狀態" width="1366" height="743" /></a>
+4、測試，進行主從機的停止啓動驗證數據是否有效
