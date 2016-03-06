@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "2015-03-02-mysql雙向主從環境搭建實驗"
+title:  "mysql雙向主從環境搭建實驗"
 date:   2015-03-02 10:02:00 +0800
 categories: linux
 ---
