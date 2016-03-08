@@ -1,0 +1,32 @@
+---
+layout: post
+title:  "Nginx日志分割功能"
+date:   2016-03-07 17:00:03 +0800
+categories: jekyll update
+---
+
+
+创建管道
+
+mkfifo /usr/local/nginx/logs/access_log_pipe
+
+
+
+
+执行
+
+nohup cat /usr/local/nginx/logs/access_log_pipe | cronolog /usr/local/nginx/logs/%Y%m%d/access_%Y%m%d%H.log &
+
+
+
+
+修改nginx配置
+
+access_log  /usr/local/nginx/logs/access_log_pipe;
+
+
+
+
+nginx 日志重新加载
+
+service nginx relo
