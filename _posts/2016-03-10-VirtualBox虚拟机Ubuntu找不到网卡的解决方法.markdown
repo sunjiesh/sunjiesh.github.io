@@ -2,7 +2,7 @@
 layout: post
 title:  "VirtualBox虚拟机Ubuntu找不到网卡的解决方法"
 date:   2016-03-10 10:00:03 +0800
-categories:linux
+categories: linux
 ---
 
 

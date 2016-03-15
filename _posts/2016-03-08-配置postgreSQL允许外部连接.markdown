@@ -2,7 +2,7 @@
 layout: post
 title:  "配置postgreSQL允许外部连接"
 date:   2016-03-08 19:00:03 +0800
-categories:postgresql
+categories: postgresql
 ---
 
  postgreSQL默认不允许外部连接，需要进行配置才行，postgreSQL版本是8.4.4。进入%postgreSQL_path%\8\data目录，打开pg_hba.conf文件，找到下面这段：
