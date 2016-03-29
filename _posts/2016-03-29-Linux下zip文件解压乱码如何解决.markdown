@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Linux 下 zip 文件解压乱码如何解决？"
+date:   2016-03-29 14:00:00 +0800
+categories: Linux
+---
+
+unzip -O cp936 xxx.zip
+
+参考：<a href="http://www.zhihu.com/question/20523036" target="_blank">http://www.zhihu.com/question/20523036</a>
