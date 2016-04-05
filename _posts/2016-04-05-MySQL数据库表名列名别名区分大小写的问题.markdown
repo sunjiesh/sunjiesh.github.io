@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "MySQL数据库表名、列名、别名区分大小写的问题"
+date:   2016-04-05 14:00:00 +0800
+categories: Mysql
+---
+
+在MySQL的配置文件中my.ini [mysqld] 中增加一行
+
+　　lower_case_table_names = 1
+
+　　参数解释：
+
+　　0：区分大小写
+
+　　1：不区分大小写
+
+参考：<a href="http://www.cnblogs.com/warmingsun/p/3234310.html" target="_blank">http://www.cnblogs.com/warmingsun/p/3234310.html</a>
