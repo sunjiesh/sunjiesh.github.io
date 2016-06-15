@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Mosquitto安装authplugin配置"
-date:   2016-65-15 21:00:00 +0800
+date:   2016-06-15 21:00:00 +0800
 categories: Linux
 ---
 
