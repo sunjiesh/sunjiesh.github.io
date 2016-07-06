@@ -8,3 +8,4 @@ categories: Linux
 <pre>
 sudo apt-get install gvfs*
 </pre>
+<img src="http://114.215.198.198/wp-content/uploads/2016/07/05/Screenshot_2016-07-05_11-52-40.png"/>
