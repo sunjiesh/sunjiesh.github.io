@@ -1,9 +1,10 @@
 ---
 layout: post
 title:  "zabbix简要安装说明"
-date:   2016-09-03 15:41:00 +0800
+date:   2016-09-03 10:05:00 +0800
 categories: Linux
 ---
+
 解压
 tar zxvf zabbix-2.2.0.tar.gz
 
