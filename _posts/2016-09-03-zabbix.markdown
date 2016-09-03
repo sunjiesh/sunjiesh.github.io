@@ -7,29 +7,41 @@ categories: Linux
 
 解压
 tar zxvf zabbix-2.2.0.tar.gz
-
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/001-tar%e8%a7%a3%e5%8e%8b.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/001-tar%e8%a7%a3%e5%8e%8b.PNG"></image></a>
 编译安装
 cd zabbix-2.2.0
 
 ./configure --enable-server --enable-agent --with-mysql --with-net-snmp --with-libcrul
 报错 configure: error: no acceptable C compiler found in $PATH
-解决：安装gcc gcc-c++
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/002-configure%e7%bc%96%e8%af%91.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/002-configure%e7%bc%96%e8%af%91.PNG"></image></a>
+解决：安装gcc gcc-c++<br>
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/003-yum%e5%ae%89%e8%a3%85gcc%e5%92%8cc++.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/003-yum%e5%ae%89%e8%a3%85gcc%e5%92%8cc++.PNG"></image></a>
 
 再次执行
 ./configure --enable-server --enable-agent --with-mysql --with-net-snmp --with-libcrul
 报错：configure: error: MySQL library not found
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/004-configure%e7%bc%96%e8%af%91%e9%94%99%e8%af%afmysqllibery.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/004-configure%e7%bc%96%e8%af%91%e9%94%99%e8%af%afmysqllibery.PNG"></image></a>
+
 解决：yum install mysql-devel mysql-server
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/005-yum%e5%ae%89%e8%a3%85mysqldevel%e5%92%8cmysqlserver.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/005-yum%e5%ae%89%e8%a3%85mysqldevel%e5%92%8cmysqlserver.PNG"></image></a>
 
 再次执行
 ./configure --enable-server --enable-agent --with-mysql --with-net-snmp --with-libcrul
 报错：configure: error: Invalid NET-SNMP directory - unable to find net-snmp-config
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/006-configure%e7%bc%96%e8%af%91%e9%94%99%e8%af%afnetsnmp.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/006-configure%e7%bc%96%e8%af%91%e9%94%99%e8%af%afnetsnmp.PNG"></image></a>
+
 解决：yum install net-snmp-devel
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/007-installnetsnmp.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/007-installnetsnmp.PNG"></image></a>
 
 再次执行
 ./configure --enable-server --enable-agent --with-mysql --with-net-snmp --with-libcrul
 编译成功
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/008-configure%e5%ae%8c%e6%88%90.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/008-configure%e5%ae%8c%e6%88%90.PNG"></image></a>
 
 make install
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/009-make%e4%b8%8emakeinstall.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/009-make%e4%b8%8emakeinstall.PNG"></image></a>
+
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/010-make%e5%ae%8c%e6%88%90.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/010-make%e5%ae%8c%e6%88%90.PNG"></image></a>
 
 vi /usr/local/etc/zabbix_server.conf
 修改DBHost、DBName、DBUser、DBPassword
@@ -39,10 +51,14 @@ mysql> create database zabbix character set utf8 collate utf8_bin;
 mysql> grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';
 mysql> exit
 
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/011-createdatabasezabbix.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/011-createdatabasezabbix.PNG"></image></a>
+
 cd database/mysql/
 mysql -uzabbix -pzabbix zabbix < schema.sql
 mysql -uzabbix -pzabbix zabbix < images.sql
 mysql -uzabbix -pzabbix zabbix < data.sql
+
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/012-mysql%e5%af%bc%e5%85%a5%e6%95%b0%e6%8d%ae.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/012-mysql%e5%af%bc%e5%85%a5%e6%95%b0%e6%8d%ae.PNG"></image></a>
 
 创建zabbix用户并修改密码
 useradd zabbix
@@ -60,6 +76,12 @@ cd conf
 cp zabbix.conf.php.example zabbix.conf.php
 vi zabbix.conf.php，修改数据库配置
 
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/013-php%e6%96%87%e4%bb%b6%e5%a4%8d%e5%88%b6%e5%88%b0httpd%e7%9b%ae%e5%bd%95.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/013-php%e6%96%87%e4%bb%b6%e5%a4%8d%e5%88%b6%e5%88%b0httpd%e7%9b%ae%e5%bd%95.PNG"></image></a>
+
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/014-%e8%bf%9b%e5%85%a5httpd%e7%9b%ae%e5%bd%95.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/014-%e8%bf%9b%e5%85%a5httpd%e7%9b%ae%e5%bd%95.PNG"></image></a>
+
 service httpd restart
 
 http://zabbixserver/zabbix，正常显示页面，安装完成
+
+<a href="http://114.215.198.198/wp-content/uploads/2016/09/03/015-zabbix%e9%a6%96%e9%a1%b5.PNG"><image src="http://114.215.198.198/wp-content/uploads/2016/09/03/015-zabbix%e9%a6%96%e9%a1%b5.PNG"></image></a>
