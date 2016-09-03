@@ -1,0 +1,64 @@
+---
+layout: post
+title:  "zabbix简要安装说明"
+date:   2016-09-03 15:41:00 +0800
+categories: Linux
+---
+解压
+tar zxvf zabbix-2.2.0.tar.gz
+
+编译安装
+cd zabbix-2.2.0
+
+./configure --enable-server --enable-agent --with-mysql --with-net-snmp --with-libcrul
+报错 configure: error: no acceptable C compiler found in $PATH
+解决：安装gcc gcc-c++
+
+再次执行
+./configure --enable-server --enable-agent --with-mysql --with-net-snmp --with-libcrul
+报错：configure: error: MySQL library not found
+解决：yum install mysql-devel mysql-server
+
+再次执行
+./configure --enable-server --enable-agent --with-mysql --with-net-snmp --with-libcrul
+报错：configure: error: Invalid NET-SNMP directory - unable to find net-snmp-config
+解决：yum install net-snmp-devel
+
+再次执行
+./configure --enable-server --enable-agent --with-mysql --with-net-snmp --with-libcrul
+编译成功
+
+make install
+
+vi /usr/local/etc/zabbix_server.conf
+修改DBHost、DBName、DBUser、DBPassword
+
+# mysql -uroot -ppassword
+mysql> create database zabbix character set utf8 collate utf8_bin;
+mysql> grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';
+mysql> exit
+
+cd database/mysql/
+mysql -uzabbix -pzabbix zabbix < schema.sql
+mysql -uzabbix -pzabbix zabbix < images.sql
+mysql -uzabbix -pzabbix zabbix < data.sql
+
+创建zabbix用户并修改密码
+useradd zabbix
+passwd zabbix
+
+使用zabbix登录
+启动zabbix_server
+
+
+通过ROOT用户操作
+复制php放入apache中
+cp frontends/php/ /var/www/html/zabbix -r
+cd /var/www/html/zabbix/
+cd conf
+cp zabbix.conf.php.example zabbix.conf.php
+vi zabbix.conf.php，修改数据库配置
+
+service httpd restart
+
+http://zabbixserver/zabbix，正常显示页面，安装完成
