@@ -2,10 +2,10 @@
 layout: post
 title:  "Gentoo常用命令总结"
 date:   2016-09-22 09:28:00 +0800
-categories: Git
+categories: Linux
 ---
 
-rc-update add sshd default
-<pre>
 add sshd to your startup
+<pre>
+rc-update add sshd default
 </pre>
