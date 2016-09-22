@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "常用Shell命令总结"
+date:   2016-09-22 09:32:00 +0800
+categories: Linux
+---
+
+重新配置Virtualbox-dkms
+<pre>
+sudo dpkg-reconfigure virtualbox-dkms
+</pre>
+
+将key写到远程机器的 ~/ .ssh/authorized_key.文件中
+<pre>
+ssh-copy-id -i ~/.ssh/id_rsa.pub remote-host
+</pre>
