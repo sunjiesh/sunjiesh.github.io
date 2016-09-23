@@ -10,6 +10,11 @@ categories: Linux
 sudo dpkg-reconfigure virtualbox-dkms
 </pre>
 
+启动jekyll
+<pre>
+bundle exec jekyll serve
+</pre>
+
 将key写到远程机器的 ~/ .ssh/authorized_key.文件中
 <pre>
 ssh-copy-id -i ~/.ssh/id_rsa.pub remote-host
