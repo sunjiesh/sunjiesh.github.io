@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Rsync安装与配置"
-date:   2016-09-23 20:41:00 +0800
+date:   2016-09-24 20:41:00 +0800
 categories: Linux
 ---
 
