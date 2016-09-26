@@ -1,18 +1,25 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
-title: Tom's blog
-email: sunjie310110@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://sunjie.me" # the base hostname & protocol for your site
-twitter_username: sunjiesh
-github_username:  sunjiesh
+name: Jack's Blog
+email: sunjie_310110@aliyun.com
+author: Jack Sun
+url: http://sunjie.me
+#resume_site:
+github: https://github.com/sunjiesh/
+github_username: sunjiesh
+baseurl: ""
+description: Blog
+meta_description: 个人博客系统
+motto: 业精于勤而荒于嬉，行成于思而毁于随
+banner: 业精于勤而荒于嬉，行成于思而毁于随
+
+#permalink: /:categories/:year/:month/:day/:title/
+permalink: /:year/:month/:day/:title/
+paginate: 10
+
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
+
+github_username: sunjiesh
+highlighter: rouge
 
 # Build settings
 markdown: kramdown
