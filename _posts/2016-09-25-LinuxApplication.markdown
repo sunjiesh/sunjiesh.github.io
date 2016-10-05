@@ -68,3 +68,35 @@ categories: Linux
     </td>
   </tr>
 </table>
+
+### 系统管理
+<table>
+  <tr>
+    <th>
+      软件类型
+    </th>
+    <th>
+      软件名称
+    </th>
+    <th>
+      支持平台
+    </th>
+    <th>
+      描述说明
+    </th>
+  </tr>
+  <tr>
+    <td>
+      文件管理
+    </td>
+    <td>
+      GNOME Commander
+    </td>
+    <td>
+      Linux
+    </td>
+    <td>
+    GNOME Commander是一个快速和强大的图形文件管理器
+    </td>
+  </tr>
+</table>
