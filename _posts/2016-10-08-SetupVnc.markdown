@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "VNC主要配置"
+date:   2016-10-08 22:48:20 +0800
+categories: Linux
+---
+
+在.vnc/xstartup下的如下两行去除注释
+
+<pre>
+</code>
+unset SESSION_MANAGER
+exec /etc/X11/xinit/xinitrc
+</code>
+</pre>
