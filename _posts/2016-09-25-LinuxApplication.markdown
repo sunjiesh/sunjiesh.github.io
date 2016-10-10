@@ -5,20 +5,20 @@ date:   2016-09-25 09:23:00 +0800
 categories: Linux
 ---
 
-### 开发相关
+### Development
 <table>
   <tr>
     <th>
-      软件类型
+      Type
     </th>
     <th>
-      软件名称
+      Name
     </th>
     <th>
-      支持平台
+      Platform
     </th>
     <th>
-      描述说明
+      Describe
     </th>
   </tr>
   <tr>
@@ -37,20 +37,20 @@ categories: Linux
   </tr>
 </table>
 
-### 办公相关
+### Office
 <table>
   <tr>
     <th>
-      软件类型
+      Type
     </th>
     <th>
-      软件名称
+      Name
     </th>
     <th>
-      支持平台
+      Platform
     </th>
     <th>
-      描述说明
+      Describe
     </th>
   </tr>
   <tr>
@@ -69,20 +69,20 @@ categories: Linux
   </tr>
 </table>
 
-### 系统管理
+### System
 <table>
   <tr>
     <th>
-      软件类型
+      Type
     </th>
     <th>
-      软件名称
+      Name
     </th>
     <th>
-      支持平台
+      Platform
     </th>
     <th>
-      描述说明
+      Describe
     </th>
   </tr>
   <tr>
