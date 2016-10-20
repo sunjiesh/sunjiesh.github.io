@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "hostname -i 命令现实错误问题"
+date:   2016-10-19 18:45:20 +0800
+categories: Linux
+---
+
+hostname -i
+返回
+fe80::7994:39c3:a551:9728%wlan0 192.168.88.107 172.17.0.1
+
+解决方法，修改/etc/hosts文件，增加一行记录即可
+<pre>
+</code>
+127.0.0.1	tom-t450
+</code>
+</pre>
