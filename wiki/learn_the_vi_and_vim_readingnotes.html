@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<title>learn_the_vi_and_vim_readingnotes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div id="《Learning the Vi and Vim》 读书笔记"><h1 id="《Learning the Vi and Vim》 读书笔记">《Learning the Vi and Vim》 读书笔记</h1></div>
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter4 Beyong the Basic"><h2 id="Chapter4 Beyong the Basic">Chapter4 Beyong the Basic</h2></div>
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter4 Beyong the Basic-More Command Combinations"><h3 id="More Command Combinations">More Command Combinations</h3></div>
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter4 Beyong the Basic-Options When Starting vi"><h3 id="Options When Starting vi">Options When Starting vi</h3></div>
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter4 Beyong the Basic-Making Use of Buffers"><h3 id="Making Use of Buffers">Making Use of Buffers</h3></div>
+<p>
+备注：注意命令前面的双引号
+<table>
+<tr>
+<th>
+命令
+</th>
+<th>
+描述
+</th>
+</tr>
+<tr>
+<td>
+"dyy
+</td>
+<td>
+Yank curent line into buffer d.
+</td>
+</tr>
+<tr>
+<td>
+"a7yy
+</td>
+<td>
+Yank next seven lines into buffer a
+</td>
+</tr>
+<tr>
+<td>
+"dP
+</td>
+<td>
+Put the contents of buffer d beffore cursor
+</td>
+</tr>
+<tr>
+<td>
+"ap
+</td>
+<td>
+Put the contents of buffer a after cursor
+</td>
+</tr>
+<tr>
+<td>
+"a5dd
+</td>
+<td>
+Delete five lines into buffer a
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+</table>
+</p>
+
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter4 Beyong the Basic-Making Your Place"><h3 id="Making Your Place">Making Your Place</h3></div>
+<table>
+<tr>
+<th>
+命令
+</th>
+<th>
+描述
+</th>
+</tr>
+<tr>
+<td>
+mx
+</td>
+<td>
+mark place,x can be any letter
+</td>
+</tr>
+<tr>
+<td>
+'x
+</td>
+<td>
+Apostrophe Moves the cursor to the first character of the line marked by x.
+</td>
+</tr>
+<tr>
+<td>
+`x
+</td>
+<td>
+Backquote Moves the cursor to the character marked by x
+</td>
+</tr>
+<tr>
+<td>
+``
+</td>
+<td>
+Reteruns to the exact position of the previous mark or context after a move
+</td>
+</tr>
+<tr>
+<td>
+''
+</td>
+<td>
+Returns to the beginning of the line of the previous mark or context
+</td>
+</tr>
+</table>
+
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter 5 Introducing the ex Editor"><h2 id="Chapter 5 Introducing the ex Editor">Chapter 5 Introducing the ex Editor</h2></div>
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter 5 Introducing the ex Editor-ex Commands"><h3 id="ex Commands">ex Commands</h3></div>
+<table>
+<tr>
+<th>
+命令
+</th>
+<th>
+描述
+</th>
+</tr>
+<tr>
+<td>
+:vi
+</td>
+<td>
+跳转到vi
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+</table>
+
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter 5 Introducing the ex Editor-Editing with ex"><h3 id="Editing with ex">Editing with ex</h3></div>
+<table>
+<tr>
+<th>
+Full name
+</th>
+<th>
+Abbreviation
+</th>
+<th>
+Meaning
+</th>
+</tr>
+<tr>
+<td>
+delete
+</td>
+<td>
+d
+</td>
+<td>
+Delete lines
+</td>
+</tr>
+<tr>
+<td>
+move
+</td>
+<td>
+m
+</td>
+<td>
+Move lines
+</td>
+</tr>
+<tr>
+<td>
+copy
+</td>
+<td>
+co
+</td>
+<td>
+Copy lines
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+t
+</td>
+<td>
+Copy lines(a synonym for co)
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>
+命令
+</th>
+<th>
+描述
+</th>
+</tr>
+<tr>
+<td>
+:3,18d
+</td>
+<td>
+Delete lines 4 through 18
+</td>
+</tr>
+<tr>
+<td>
+:160,224m23
+</td>
+<td>
+Move lines 160 through 224 to follow line 23.(Like delete and put in vi.)
+</td>
+</tr>
+<tr>
+<td>
+:23,29co100
+</td>
+<td>
+Copy lines 23 through 29 and put after line 100.(Like yank and put in vi.)
+</td>
+</tr>
+<tr>
+<td>
+:set number
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:set nu
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:set nonumber
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:set nonu
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:1,10#
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:=
+</td>
+<td>
+Print the total number of lines
+</td>
+</tr>
+<tr>
+<td>
+:.=
+</td>
+<td>
+Print the line number of the current line.
+</td>
+</tr>
+<tr>
+<td>
+:/pattern/=
+</td>
+<td>
+Print the line number of the first line that matches pattern.
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+</table>
+
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter 5 Introducing the ex Editor-Save and Exiting Files"><h3 id="Save and Exiting Files">Save and Exiting Files</h3></div>
+<table>
+<tr>
+<th>
+Command
+</th>
+<th>
+Describe
+</th>
+</tr>
+<tr>
+<td>
+:w
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:q
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:wq
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:x
+</td>
+<td>
+Both writes the file and quits(exits) the editor.The file is written only if ithas been modified.
+</td>
+</tr>
+<tr>
+<td>
+:230,$w newfile
+</td>
+<td>
+Saves from line 230 to end of file in newfile.
+</td>
+</tr>
+<tr>
+<td>
+:.,600w newfile
+</td>
+<td>
+Saves from the current line to line 600 in newfile.
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+</table>
+
+
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter 5 Introducing the ex Editor-Copying a File into Another File"><h3 id="Copying a File into Another File">Copying a File into Another File</h3></div>
+<table>
+<tr>
+<th>
+Command
+</th>
+<th>
+Describe
+</th>
+</tr>
+<tr>
+<td>
+:read filename
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:r filename
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:185r /home/tim/data
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:$r /home/tim/data
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:0r /home/tim/data
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+:/pattern/r /home/tim/data
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+</table>
+
+<div id="《Learning the Vi and Vim》 读书笔记-Chapter 5 Introducing the ex Editor-Editing Multiple Files"><h3 id="Editing Multiple Files">Editing Multiple Files</h3></div>
+
+</body>
+</html>
