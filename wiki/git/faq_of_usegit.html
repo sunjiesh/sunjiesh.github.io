@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>faq_of_usegit</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div id="Git使用FAQ"><h1 id="Git使用FAQ">Git使用FAQ</h1></div>
+
+<p>
+*Q:warning: refname 'b8a9ef99a2b0dd350ef9bf4c865a5111837ae56a' is ambiguous.
+问题描述
+</p>
+<pre>
+warning: refname 'b8a9ef99a2b0dd350ef9bf4c865a5111837ae56a' is ambiguous.
+Git normally never creates a ref that ends with 40 hex characters
+because it will be ignored when you just specify 40-hex. These refs
+may be created by mistake. For example,
+
+  git checkout -b $br $(git rev-parse ...)
+  
+  where "$br" is somehow empty and a 40-hex ref is created. Please
+  examine these refs and maybe delete them. Turn this message off by
+  running "git config advice.objectNameWarning false"
+</pre>
+<p>
+A:{{{
+执行命令：
+git tag -d b8a9ef99a2b0dd350ef9bf4c865a5111837ae56a
+git push origin :refs/tags/b8a9ef99a2b0dd350ef9bf4c865a5111837ae56a
+}}}
+</p>
+
+</body>
+</html>
