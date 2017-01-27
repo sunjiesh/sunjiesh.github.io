@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>install_ha</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div id="HA部署"><h1 id="HA部署">HA部署</h1></div>
+<div id="HA部署-环境准备"><h2 id="环境准备">环境准备</h2></div>
+<div id="HA部署-环境准备-测试服务器"><h3 id="测试服务器">测试服务器</h3></div>
+<p>
+centosvm003		192.168.1.103
+centosvm006		192.168.1.106
+</p>
+
+<div id="HA部署-环境准备-需要安装的缺少的依赖包"><h3 id="需要安装的缺少的依赖包">需要安装的缺少的依赖包</h3></div>
+<p>
+1、yum install glib2-devel
+2、yum install libxml2-devel
+3、yum install bzip2-devel
+4、yum install libtool-ltdl-devel
+5、yum install e2fsprogs-devel libuuid-devel
+</p>
+
+
+<div id="HA部署-环境准备-安装Cluster Glue"><h3 id="安装Cluster Glue">安装Cluster Glue</h3></div>
+<p>
+./autogen.sh
+./configure LIBS='/lib64/libuuid.so.1'
+make
+make install
+注：make过程有点慢，并且需要联网，可能需要翻墙。
+</p>
+
+<div id="HA部署-环境准备-安装HeartBeat"><h3 id="安装HeartBeat">安装HeartBeat</h3></div>
+<p>
+./bootstrap
+因为Cluster Glue安装在了/usr/include/heartbeat，而heartbeat被默认安装/usr/local，会导致找不到glue_config.h文件
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+ucast.c:468: error: conflicting types for ‘i’ 
+变量i冲突，删除468行int i = 1;应该就能make了（网上找到了方法，好坑）
+</p>
+
+<p>
+yum install epel-release.noarch
+yum install heartbeat*
+yum install pacemaker
+yum install cluster-glue-libs-devel
+yum install cluster-glue-libs
+</p>
+
+<div id="HA部署-环境准备-配置ha.cf"><h3 id="配置ha.cf">配置ha.cf</h3></div>
+<p>
+vi /etc/ha.d/ha.cf
+</p>
+
+<div id="HA部署-环境准备-配置authkeys"><h3 id="配置authkeys">配置authkeys</h3></div>
+<p>
+(echo -ne "auth 1\n1 sha1 "; dd if=/dev/urandom bs=512 count=1 | openssl md5 ) &gt; /etc/ha.d/authkeys
+chmod 600 /etc/ha.d/authkeys
+</p>
+
+<div id="HA部署-环境准备-配置haresources"><h3 id="配置haresources">配置haresources</h3></div>
+<p>
+vi /etc/ha.d/haresources
+</p>
+
+<div id="HA部署-环境准备-查看状态"><h3 id="查看状态">查看状态</h3></div>
+<p>
+service heartbeat status
+报错：/usr/lib64/heartbeat/heartbeat: error while loading shared libraries: libstonith.so.1: cannot open shared object file: No such file or directory
+解决：重装cluster-glue-libs-devel和cluster-glue-libs
+yum reinstall cluster-glue-libs-devel
+</p>
+
+</body>
+</html>
