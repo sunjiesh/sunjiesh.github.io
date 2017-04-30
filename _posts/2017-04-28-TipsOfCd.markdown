@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "cd的一些Tips"
+date:   2017-04-28 11:00:20 +0800
+categories: Linux
+---
+<pre>
+<code>
+cd -
+</code>
+</pre>

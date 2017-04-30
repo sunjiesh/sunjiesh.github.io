@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../style.css">
+<title>recure_grub</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div id="修复GRUB"><h3 id="修复GRUB">修复GRUB</h3></div>
+
+<p>
+用ubuntu10.04光盘启动电脑，进入LIVECD模式。
+</p>
+
+<p>
+sudo -i
+</p>
+
+<p>
+先来找一找你的ubuntu10.04安装在那个分区，用：
+</p>
+
+<p>
+fdisk -l
+</p>
+
+<p>
+我的部分输出如下：
+</p>
+
+<p>
+Disk /dev/sda: 60.1 GB, 60060155904 bytes
+144 heads, 3 sectors/track, 271539 cylinders
+Units = cylinders of 432 * 512 = 221184 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x99369c3f
+</p>
+
+<p>
+   Device Boot      Start         End      Blocks   Id  System
+   /dev/sda1               5       69443    14998528   83  Linux
+   /dev/sda2           69443       94825     5482496   82  Linux swap / Solaris
+   /dev/sda3   *       94825       95299      102400    7  HPFS/NTFS
+   /dev/sda4           95299      271531    38066176    7  HPFS/NTFS
+</p>
+   
+<p>
+   我ubuntu10.04根目录所在的分区就是/dev/sda1，如果你不确定的话就找id为83的吧。
+</p>
+   
+<p>
+   下面挂载原系统的根目录：
+</p>
+   
+<p>
+   mount /dev/sda1 /mnt
+</p>
+   
+<p>
+   将/dev/sda1挂载到了/mnt下，当然你也可以选其他地方。这里注意，如果你有单独为/boot分区的话，要单独挂载一次 /boot，比如说 如果你原来的/boot挂载到/dev/sda12上了，那个你这里要再输入mount /dev/sda12 /mnt/boot。我这里没有把它单独分出来，所以就不需要了。
+</p>
+   
+<p>
+   下面是最后一步了：
+</p>
+   
+<p>
+   grub-install --root-directory=/mnt /dev/sda (注意:/mnt后面有 空格键)
+</p>
+   
+<p>
+   如果看到
+</p>
+   
+<p>
+   Installation finished.No Error Reported.
+</p>
+   
+<p>
+   就表示已经成功啦！重启看看，熟悉的grub引导画面是不是又回来了？
+</p>
+   
+<p>
+   这时重新启动你的电脑，就能看到grub2的引导界面了，但是这时只能用来引导Ubuntu 10.04，还暂时无法引导Windows 7，这时选择进入Ubuntu 10.04，再找到并启动终端，在终端输入如下命令：
+</p>
+   
+<p>
+   sudo update-grub2
+</p>
+   
+<p>
+   更新一下grub2就可以了。
+   按照提示输入密码，如果顺利的话，会出现如下类似语句，那就表示成功了。
+</p>
+   
+<p>
+   Generating grub.cfg ...
+   Found linux image: /boot/vmlinuz-2.6.32-22-generic-pae
+   Found initrd image: /boot/initrd.img-2.6.32-22-generic-pae
+   Found memtest86+ image: /boot/memtest86+.bin
+   Found Windows 7 (loader) on /dev/sda3
+   done
+</p>
+
+<p>
+<a href="http:&#47;&#47;ju.outofmemory.cn&#47;entry&#47;160164">参考地址</a>
+</p>
+
+</body>
+</html>
