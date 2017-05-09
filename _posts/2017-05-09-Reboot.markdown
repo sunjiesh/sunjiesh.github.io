@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "Linux强制重启"
+date:   2017-05-09 09:00:00 +0800
+categories: Linux
+---
+<pre>
+<code>
+echo 1 > /proc/sys/kernel/sysrq
+echo b > /proc/sysrq-trigger
+</code>
+</pre>
