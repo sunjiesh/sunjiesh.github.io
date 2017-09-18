@@ -26,6 +26,3 @@ vi config.mk
 WITH_SRV:=no  
 </pre>
 
-<pre>
- make mosquitto
-</pre>
