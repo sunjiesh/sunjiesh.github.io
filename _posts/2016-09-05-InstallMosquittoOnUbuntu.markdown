@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "安装mosquitto"
+title:  "Ubuntu上安装mosquitto"
 date:   2016-09-05 12:05:00 +0800
 categories: Linux
 ---
