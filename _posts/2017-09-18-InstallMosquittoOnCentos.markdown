@@ -16,6 +16,7 @@ yum install libuuid libuuid-devel
 主要安装步骤
 1. make
 2. make instlal
+3. useradd mosquitto
 
 碰到的问题描述
 ./mosquitto_internal.h:40:20: error: ares.h: No such file or directory
