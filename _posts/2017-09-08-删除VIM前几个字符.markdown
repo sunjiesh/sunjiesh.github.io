@@ -6,5 +6,5 @@ categories: Vim
 ---
 
 <pre>
-:% s/^.\{4\}//g
+:%s/^.\{4\}//g
 </pre>
