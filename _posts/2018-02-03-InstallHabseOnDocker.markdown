@@ -48,12 +48,10 @@ vim core-site.xml
 </pre>
 添加如下配置
 <code>
-<![CDATA[
-<property>
-<name>fs.defaultFS</name>
-<value>hdfs://node1.example.com:9000</value>
-</property>
-]]>
+&lt;property&gt;
+&lt;name&gt;fs.defaultFS&lt;/name&gt;
+&lt;value&gt;hdfs://node1.example.com:9000lt;/value&gt;
+&lt;property&gt;
 </code>
 fs.defaultFs一定设置域名，不能设置localhost，否则会导致hbase的hmaster无法启动
 
@@ -65,24 +63,22 @@ vim hdfs-site.xml
 </pre>
 添加如下配置
 <code>
-<![CDATA[
-<property>
-<name>dfs.replication</name>
-<value>3</value>
-</property>
-<property>
-<name>dfs.name.dir</name>
-<value>/data/hdfs/name</value>
-</property>
-<property>
-<name>dfs.checkpoint.dir</name>
-<value>/data/hdfs/namesecondary</value>
-</property>
-<property>
-<name>dfs.data.dir</name>
-<value>/data/hdfs/data</value>
-</property>
-]]>
+&lt;property&gt;
+&lt;name&gt;dfs.replication&lt;/name&gt;
+&lt;value&gt;3&lt;/value&gt;
+&lt;property&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.name.dir&lt;/name&gt;
+&lt;value&gt;data/hdfs/name&lt;/value&gt;
+&lt;property&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.checkpoint.dir&lt;name&gt;
+&lt;value&gt;data/hdfs/namesecondary&lt;value&gt;
+&lt;property&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.data.dir&lt;name&gt;
+&lt;value&gt;data/hdfs/data&lt;value&gt;
+&lt;property&gt;
 </code>
 
 ### 格式化HDFS
