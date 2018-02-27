@@ -47,12 +47,12 @@ cd $HADOOP_HOME/etc/hadoop/
 vim core-site.xml
 </pre>
 添加如下配置
-<code>
+<pre>
 &lt;property&gt;
 &lt;name&gt;fs.defaultFS&lt;/name&gt;
 &lt;value&gt;hdfs://node1.example.com:9000lt;/value&gt;
 &lt;property&gt;
-</code>
+</pre>
 fs.defaultFs一定设置域名，不能设置localhost，否则会导致hbase的hmaster无法启动
 
 ### 配置hdfs-site.xml
@@ -62,7 +62,7 @@ cd $HADOOP_HOME/etc/hadoop/
 vim hdfs-site.xml
 </pre>
 添加如下配置
-<code>
+<pre>
 &lt;property&gt;
 &lt;name&gt;dfs.replication&lt;/name&gt;
 &lt;value&gt;3&lt;/value&gt;
@@ -79,42 +79,42 @@ vim hdfs-site.xml
 &lt;name&gt;dfs.data.dir&lt;name&gt;
 &lt;value&gt;data/hdfs/data&lt;value&gt;
 &lt;property&gt;
-</code>
+</pre>
 
 ### 格式化HDFS
 执行命令
-<code>
+<pre>
 hdfs namenode -format
-</code>
+</pre>
 
 ### 启动HDFS
 执行命令
-<code>
+<pre>
 start-dfs.sh
-</code>
+</pre>
 
 ### 验证启动完成
 输入jps，出现NameNode、DataNode、SecondaryNameNode即表示成功
-<code>
+<pre>
 hadoop@9aafd31815d4:/tmp$ jps
 1984 NameNode
 2131 DataNode
 2477 Jps
 2333 SecondaryNameNode
-</code>
+</pre>
 
 
 ## Zookeeper配置与启动
 ### 配置
 修改默认配置文件
-<code>
+<pre>
 cd $ZOOKEEPER_HOME/conf
 vim zoo.cfg
-</code>
+</pre>
 修改dataDir，改为指定目录，例如
-<code>
+<pre>
 dataDir=/data/zookeeper
-</code>
+</pre>
 
 ### 启动
 启动命令如下
@@ -145,16 +145,16 @@ Starting zookeeper ... STARTED
 </property>
 ### 配置 regionservers
 删除原有记录，添加如下记录
-<code>
+<pre>
 node3.example.com
-</code>
+</pre>
 ### 修改hbase-env.sh
 添加如下命令
-<code>
+<pre>
 export HBASE_MANAGES_ZK=false
-</code>
+</pre>
 ### 启动
-<code>
+<pre>
 hadoop@c653e809297f:/tmp$ start-hbase.sh 
 running master, logging to /home/hadoop/hbase/logs/hbase-hadoop-master-c653e809297f.out
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=128m; support was removed in 8.0
@@ -167,11 +167,11 @@ SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
 node3.example.com: running regionserver, logging to /home/hadoop/hbase/logs/hbase-hadoop-regionserver-c653e809297f.out
 node3.example.com: Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=128m; support was removed in 8.0
 node3.example.com: Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128m; support was removed in 8.0
-</code>
+</pre>
 ### 验证启动完成
 输入jps，出现HRegionServer和HMaster即表示成功
-<code>
+<pre>
 4644 HMaster
 4827 HRegionServer
 5197 Jps
-</code>
+</pre>
