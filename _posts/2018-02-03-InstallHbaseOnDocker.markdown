@@ -47,12 +47,14 @@ cd $HADOOP_HOME/etc/hadoop/
 vim core-site.xml
 </pre>
 添加如下配置
-<pre>
-&lt;property&gt;
-&lt;name&gt;fs.defaultFS&lt;/name&gt;
-&lt;value&gt;hdfs://node1.example.com:9000lt;/value&gt;
-&lt;property&gt;
-</pre>
+
+```html
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://node1.example.com:9000lt;/value>
+<property>
+```
+
 fs.defaultFs一定设置域名，不能设置localhost，否则会导致hbase的hmaster无法启动
 
 ### 配置hdfs-site.xml
@@ -62,24 +64,25 @@ cd $HADOOP_HOME/etc/hadoop/
 vim hdfs-site.xml
 </pre>
 添加如下配置
-<pre>
-&lt;property&gt;
-&lt;name&gt;dfs.replication&lt;/name&gt;
-&lt;value&gt;3&lt;/value&gt;
-&lt;property&gt;
-&lt;property&gt;
-&lt;name&gt;dfs.name.dir&lt;/name&gt;
-&lt;value&gt;data/hdfs/name&lt;/value&gt;
-&lt;property&gt;
-&lt;property&gt;
-&lt;name&gt;dfs.checkpoint.dir&lt;name&gt;
-&lt;value&gt;data/hdfs/namesecondary&lt;value&gt;
-&lt;property&gt;
-&lt;property&gt;
-&lt;name&gt;dfs.data.dir&lt;name&gt;
-&lt;value&gt;data/hdfs/data&lt;value&gt;
-&lt;property&gt;
-</pre>
+
+```html
+<property>
+<name>dfs.replication</name>
+<value>3</value>
+<property>
+<property>
+<name>dfs.name.dir</name>
+<value>data/hdfs/name</value>
+<property>
+<property>
+<name>dfs.checkpoint.dir<name>
+<value>data/hdfs/namesecondary<value>
+<property>
+<property>
+<name>dfs.data.dir<name>
+<value>data/hdfs/data<value>
+<property>
+```
 
 ### 格式化HDFS
 执行命令
@@ -127,6 +130,8 @@ Starting zookeeper ... STARTED
 
 ## Hbase配置与启动
 ### 配置hbase-site.xml
+
+```html
 <property>
 <name>hbase.rootdir</name>
 <value>hdfs://node1.example.com:9000/hbase</value>
@@ -143,6 +148,8 @@ Starting zookeeper ... STARTED
 <name>hbase.cluster.distributed</name>
 <value>true</value>
 </property>
+```
+
 ### 配置 regionservers
 删除原有记录，添加如下记录
 <pre>
