@@ -10,22 +10,26 @@ categories: BigData
   <code>$HADOOP_HOME/bin/hdfs namenode -format </code>
 </pre>
 
-启动NameNode
+启动NameNode(HDFS用户启动)
 <pre>
   <code>$HADOOP_HOME/bin/hdfs --daemon start namenode</code>
 </pre>
+启动SecondaryNameNode(HDFS用户启动)
+<pre>
+  <code>$HADOOP_HOME/bin/hdfs --daemon start secondarynamenode</code>
+</pre>
 
-启动DataNode
+启动DataNode(HDFS用户启动)
 <pre>
   <code>$HADOOP_HOME/bin/hdfs --daemon start datanode </code>
 </pre>
 
-启动resourcemanager
+启动resourcemanager(yarn用户启动)
 <pre>
   <code>$HADOOP_HOME/bin/yarn --daemon start resourcemanager
  </code>
 </pre>
-启动nodemanager
+启动nodemanager(yarn用户启动)
 <pre>
   <code>$HADOOP_HOME/bin/yarn --daemon start nodemanager </code>
 </pre>
