@@ -157,6 +157,11 @@ chown hdfs:hadoop /etc/security/keytabs/spnego.service.keytab
 chmod 400 /etc/security/keytabs/spnego.service.keytab
 ```
 
+
+备注：如果是Oracle的JDK，更新对应的JCE
+例如如下地址为JDK1.8对应的地址
+http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
+
 ### 浏览器客户端配置
 KDC服务器上 /usr/sbin/kadmin.local，创建新的principal并且修改密码
 
@@ -173,7 +178,7 @@ kinit testuser1@EXAMPLE.COM
 
 配置浏览器
 
-参考地址
+操作参考
 http://www.microhowto.info/howto/configure_firefox_to_authenticate_using_spnego_and_kerberos.html
 
 
