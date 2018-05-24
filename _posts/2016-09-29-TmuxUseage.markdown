@@ -6,11 +6,20 @@ categories: Linux
 ---
 
 ### creates a new tmux session
-<pre>
-  tmux new -s session_name
-</pre>
+
+```shell
+tmux new -s session_name
+```
 
 ### attach session
-<pre>
-  tmux attach -t session_name
-</pre>
+
+```shell
+tmux attach -t session_name
+```
+
+### list session
+
+```shell
+tmux ls
+```
+
