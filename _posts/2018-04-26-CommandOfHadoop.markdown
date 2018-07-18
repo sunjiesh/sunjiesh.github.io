@@ -43,7 +43,8 @@ categories: BigData
 <pre>
   <code>$HADOOP_HOME/sbin/start-yarn.sh </code>
 </pre>
-启动
+
+清理HDFS回收箱
 <pre>
-  <code> </code>
+  <code>$HADOOP_HOME/bin/hdfs dfs -expunge </code>
 </pre>
