@@ -2,7 +2,7 @@
 layout: post
 title:  "Hbase常用命令总结"
 date:   2018-11-01 11:00:00 +0800
-categories: Git
+categories: Bigdata
 ---
 
 启动与关闭HMaster
