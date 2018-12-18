@@ -78,17 +78,12 @@ hive.server2.enable.doAs 需要设置为false
 ```shell
 cp /tmp/mysql-connector-java-5.1.26.jar $HIVE_HOME/lib/
 $HIVE_HOME/bin/schematool -dbType mysql -initSchema
+
 ```
 
 正确结果返回如下
 
 ```shell
-SLF4J: Class path contains multiple SLF4J bindings.
-SLF4J: Found binding in [jar:file:/data/hive-install/lib/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: Found binding in [jar:file:/data/hadoop-install/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
-SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
-Metastore connection URL:	 jdbc:mysql://10.241.10.108:3306/hive?createDatabaseIfNotExist=true
 Metastore Connection Driver :	 com.mysql.jdbc.Driver
 Metastore connection User:	 root
 Starting metastore schema initialization to 2.3.0
@@ -100,10 +95,21 @@ schemaTool completed
 #### 启动
 
 ```shell
+
 $HIVE_HOME/bin/hive --service hiveserver2
+
 ```
 
-## 引用：
 
-<a href="https://stackoverflow.com/questions/40077938/access-hbase-with-hiveserver2-error?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa" target="_blank">https://stackoverflow.com/questions/40077938/access-hbase-with-hiveserver2-error?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa</a>
+#### 调用
 
+```shell
+
+$HIVE_HOME/bin/beeline -u jdbc:hive2://$HS2_HOST:$HS2_PORT
+
+```
+
+
+## 引用
+
+[https://stackoverflow.com/questions/40077938/access-hbase-with-hiveserver2-error?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa](https://stackoverflow.com/questions/40077938/access-hbase-with-hiveserver2-error?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa" target="_blank)
