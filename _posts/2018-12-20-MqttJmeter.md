@@ -5,6 +5,8 @@ date:   2018-12-20 19:15:00 +0800
 categories: Iot
 ---
 
+## 配置
+
 ```shell
 export PATH=$PATH:<JDK_HOME>/bin
 
@@ -29,3 +31,7 @@ Connection keep time(s): 连接建立后，保持该连接的时长。例如，1
 Connect attempt max: 第一次连接过程中，尝试重连的最大次数。超过该次数则认为连接失败。
 
 Reconnect attempt max: 后继连接过程中，尝试重连的最大次数。超过该次数则认为连接失败。
+
+## 引用
+
+[https://www.cnblogs.com/saryli/p/6928051.html](https://www.cnblogs.com/saryli/p/6928051.html)
