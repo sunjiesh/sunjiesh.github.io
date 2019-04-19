@@ -11,3 +11,7 @@ categories: Java
 http://localhost:8083/swagger-ui.html
 ```
 
+## swagger2markup 插件使用
+```shell
+ mvn swagger2markup:convertSwagger2markup
+```
