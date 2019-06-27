@@ -1,0 +1,49 @@
+---
+
+layout: post 
+title: "Hexo使用指南" 
+date: 2019-06-27 00:00:00 +0800
+categories: Linux
+---
+
+
+## 安装Hexo
+
+
+### 安装Nodejs
+
+### 更改npm源
+
+### 安装hexo
+```shell
+npm install -g hexo-cli
+```
+
+## Quick Start
+
+### 创建hexo工程
+```shell
+hexo init blog
+```
+
+### 新建POST
+
+```shell
+cd blog
+hexo new “HelloWorld”
+```
+
+### 生成静态文件
+```shell
+hexo generate
+```
+
+### 运行hexo服务器
+```shell
+hexo server
+```
+
+
+### 引用 
+[https://www.jianshu.com/p/84a8384be1ae](https://www.jianshu.com/p/84a8384be1ae).
+
