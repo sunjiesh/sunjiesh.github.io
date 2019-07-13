@@ -15,5 +15,9 @@ awk -F ',' 'BEGIN{sum=0}{sum+=$2}END{print sum}'
 
 ```
 
+```shell
+awk '{if($6 > 20 && $6 <=50) {safe++;print "OK"}}' filename
+```
+
 
 引用 [https://www.chedong.com/blog/archives/000682.html](https://www.chedong.com/blog/archives/000682.html).
