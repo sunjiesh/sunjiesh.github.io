@@ -1,0 +1,18 @@
+---
+
+layout: post 
+title: "Awk命令" 
+date: 2019-08-30 00:00:00 +0800
+categories: Other
+---
+
+```shell
+
+$ awk '{if($6 > 50) {print $1 " Too high";} else {print "Range is OK";}}' filename
+
+
+```
+
+### 引用 
+[https://blog.csdn.net/xiyangyang052/article/details/45462505](https://blog.csdn.net/xiyangyang052/article/details/45462505).
+
