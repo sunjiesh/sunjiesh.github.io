@@ -2,7 +2,7 @@
 
 layout: post 
 title: "Yarn Kerberos授权" 
-date: 2018-06-04 10:00:00 +0800
+date: 2019-10-23 10:00:00 +0800
 categories: BigData
 ---
 
@@ -45,7 +45,7 @@ export PATH=$PATH:$HBASE_HOME/bin
 </property>
 <property>
     <name>yarn.resourcemanager.webapp.spnego-principal</name>
-    <value>HTTP/10-241-10-109@SANGOTEK.COM</value>
+    <value>HTTP/10-241-10-109@EXAMPLE.COM</value>
 </property>
 
 ```
