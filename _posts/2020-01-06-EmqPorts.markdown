@@ -1,0 +1,17 @@
+---
+
+layout: post 
+title: "Emq 端口号" 
+date: 2020-01-06 09:20:00 +0800
+categories: Java
+---
+
+EMQ X 消息服务器默认占用的 TCP 端口包括:
+
+| 端口 | 描述 |
+| ----- | -----|
+| 1883 | 	MQTT 协议端口 | 
+| 8883 | 	MQTT/SSL 端口 | 
+| 8083 | 	MQTT/WebSocket 端口 | 
+| 8080 | 	HTTP API 端口 | 
+| 18083 | Dashboard 管理控制台端口 | 
