@@ -1,0 +1,19 @@
+---
+
+layout: post 
+title: "Emq 命令" 
+date: 2020-01-14 09:20:00 +0800
+categories: Java
+---
+
+## 常用命令
+
+### 启动emqx
+./bin/emqx start
+
+### 检查运行状态
+./bin/emqx_ctl status
+
+### 重新加载 acl 配置文件:
+
+./bin/emqx_ctl acl reload
