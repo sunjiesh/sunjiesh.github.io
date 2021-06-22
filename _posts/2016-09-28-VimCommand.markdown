@@ -10,3 +10,14 @@ categories: vim
   :set equalprg=xmllint\ --format\ -
   gg=G
 </pre>
+
+### Lower
+```shell
+:%s/[A-Z]/\L&/g
+```
+### Upper
+```shell
+:%s/[z-z]/\U&/g
+```
+
+
