@@ -23,3 +23,23 @@ tmux attach -t session_name
 tmux ls
 ```
 
+### open new tab
+
+```shell
+hit Ctrl + B and then C
+```
+
+### Moving among tabs
+```shell
+To move among these tabs hit the following keys:
+
+    Ctrl + B and then n to go to the next tab on the right
+    Ctrl + B and then p to go to the previous tab on the left
+    Ctrl + B and then {number} to go to the tab with number equal to {number} (e.g. 0 to go to the first tab)
+```
+
+### Closing a tab
+```shell
+To close a tab, move to it and then hit Ctrl + B and then x and then hit y and Enter to confirm closing of this tab.
+```
+
