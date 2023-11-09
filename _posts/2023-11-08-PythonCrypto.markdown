@@ -7,8 +7,8 @@ categories: Software
 ---
 
 ```shell
-pip uninstall crypto pycryptodome
-pip install pycryptodome
+pip uninstall crypto pycrypto
+pip install pycrypto
 ```
 
 
